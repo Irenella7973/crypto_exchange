@@ -1,0 +1,60 @@
+.containerInputCoin {
+	display: flex;
+	align-items: center;
+	position: relative;
+}
+
+.input {
+	width: 440px;
+	height: 50px;
+	padding: 7px 15px;
+	outline: none;
+	background-color: var(--input-border-color);
+	box-sizing: border-box;
+	font-size: 16px;
+	border-width: 1px 0 1px 1px;
+	border-color: var(--input-bg-color);
+	border-style: solid;
+	border-radius: 5px 0 0 5px;
+}
+
+.select {
+	display: flex;
+	flex-direction: row;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	gap: 15px;
+	width: 150px;
+	height: 50px;
+	padding: 7px 15px;
+	outline: none;
+	background-color: var(--input-border-color);
+	box-sizing: border-box;
+	border-width: 1px 1px 1px 0;
+	border-color: var(--input-bg-color);
+	border-style: solid;
+	border-radius: 0 5px 5px 0;
+}
+
+.delimiter {
+	position: absolute;
+	right: 150px;
+}
+
+.ticker {
+	text-transform: uppercase;
+}
+
+.count {
+	color: var(--text-color);
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 23px;
+	text-transform: uppercase;
+}
+
+.arrow {
+	cursor: pointer;
+}

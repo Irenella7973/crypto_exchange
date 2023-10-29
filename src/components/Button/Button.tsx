@@ -1,22 +1,9 @@
-import classNames from 'classnames';
 import styles from './Button.module.css';
 import { ButtonPops } from './Button.props';
 
-function Button({
-	children,
-	className,
-	appearence = 'small',
-	...props
-}: ButtonPops) {
+function Button({ children }: ButtonPops) {
 	return (
-		<button
-			type="button"
-			className={classNames(styles.button, styles.accent, className, {
-				[styles.small]: appearence === 'small',
-				[styles.big]: appearence === 'big'
-			})}
-			{...props}
-		>
+		<button type="button" className={styles.button}>
 			{children}
 		</button>
 	);

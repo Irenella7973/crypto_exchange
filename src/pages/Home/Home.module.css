@@ -1,15 +1,15 @@
 .root {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	gap: 30px;
-	margin-top: 100px;
+	align-items: flex-start;
+	justify-content: center;
+	gap: 60px;
+	margin: 10rem;
 }
 
-.img {
-	height: 19px;
-	width: 19px;
+.translationContainer {
+	width: 100%;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	gap: 32px;
+	align-items: end;
 }

@@ -1,18 +1,17 @@
 :root {
-	--font: 'Open Sans', sans-serif;
-	--primary-color: #fe724c;
-	--primary-hover-color: #df6442;
-	--text-color: #000000;
-	--text-secondary-color: #5b5b5e;
 	--white-color: #ffffff;
-	--separator-color: #d4d6e0;
-	--input-placeholder-color: #c4c4c4;
-	--secondory-color: #9ea1b1;
-	--hr-color: #f1f2f3;
-	--total-color: #bebebe;
+	--input-bg-color: #e3ebef;
+	--input-border-color: #f6f7f8;
+	--input-hover-color: #e9f1f7;
+	--text-color: #282828;
+	--text-secondary-color: #80a2b6;
+	--button-bg-color: #11b3fe;
+	--button-bg-color-hover: #0095e0;
 }
 
 body {
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'Inter', sans-serif;
+	font-family: 'Roboto', sans-serif;
 	margin: 0;
+	box-sizing: border-box;
 }

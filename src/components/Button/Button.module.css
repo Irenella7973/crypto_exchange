@@ -1,3 +1,7 @@
+.buttonContainer {
+	position: relative;
+}
+
 .button {
 	height: 50px;
 	font-size: 16px;
@@ -14,4 +18,11 @@
 	&:hover {
 		background: var(--button-bg-color-hover);
 	}
+}
+
+.errorMessage {
+	position: absolute;
+	bottom: -25px;
+	left: 15px;
+	color: var(--red);
 }

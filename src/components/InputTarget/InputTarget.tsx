@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { InputSelectProps } from './InputSelect.props';
+import { InputTargetProps } from './InputTarget.props';
 import { Coin } from '../../interfaces/api';
 import InputCoin from '../InputCoin/InputCoin';
 import InputSearch from '../InputSearch/InputSearch';
 
-function InputSelect({ currencies, coin, setCoin }: InputSelectProps) {
+function InputTarget({ currencies, coin, setCoin, amount }: InputTargetProps) {
 	const [isSearchInput, setIsSearchInput] = useState<boolean>(false);
 
 	const getSearch = () => {
@@ -18,7 +18,9 @@ function InputSelect({ currencies, coin, setCoin }: InputSelectProps) {
 
 	return (
 		<>
-			{!isSearchInput && <InputCoin coin={coin} getSearch={getSearch} />}
+			{!isSearchInput && (
+				<InputCoin coin={coin} getSearch={getSearch} amount={amount} />
+			)}
 			{isSearchInput && (
 				<InputSearch
 					currencies={currencies}
@@ -30,4 +32,4 @@ function InputSelect({ currencies, coin, setCoin }: InputSelectProps) {
 	);
 }
 
-export default InputSelect;
+export default InputTarget;

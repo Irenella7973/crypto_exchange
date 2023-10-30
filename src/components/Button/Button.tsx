@@ -1,11 +1,16 @@
 import styles from './Button.module.css';
 import { ButtonPops } from './Button.props';
 
-function Button({ children }: ButtonPops) {
+const ERROR_MESSAGE = 'This pair is disabled now';
+
+function Button({ children, error }: ButtonPops) {
 	return (
-		<button type="button" className={styles.button}>
-			{children}
-		</button>
+		<div className={styles.buttonContainer}>
+			<button type="button" className={styles.button}>
+				{children}
+			</button>
+			{error && <span className={styles.errorMessage}>{ERROR_MESSAGE}</span>}
+		</div>
 	);
 }
 

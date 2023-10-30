@@ -7,6 +7,16 @@
 	margin: 10rem;
 }
 
+.exchangeContainer {
+	width: 100%;
+	display: flex;
+	align-items: start;
+	gap: 17px;
+	& button {
+		padding-top: 10px;
+	}
+}
+
 .translationContainer {
 	width: 100%;
 	display: flex;

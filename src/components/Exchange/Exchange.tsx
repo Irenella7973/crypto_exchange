@@ -1,15 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from 'react';
 import ButtonSVG from '../ButtonSVG/ButtonSVG';
-import InputSelect from '../InputSelect/InputSelect';
+import InputSource from '../InputSource/InputSource';
 import styles from './Exchange.module.css';
-import { Coin, EstimatedAmount, MinAmount } from '../../interfaces/api';
+import { Coin } from '../../interfaces/api';
 import useApiHook from '../../hooks/use-api.hook';
-import { PREFIX_V1, PREFIX_V2, API_KEY } from '../../constants';
+import { PREFIX_V1 } from '../../constants';
+import { ExchangeProps } from './Exchange.props';
+import InputTarget from '../InputTarget/InputTarget';
+import useMinAmount from '../../hooks/use-minAmount.hook';
+import useEstimatedAmount from '../../hooks/use-estimatedAmount';
+import Loader from '../Loader/Loader';
 
-function Exchange() {
+function Exchange({ setError }: ExchangeProps) {
 	const [sourceCoin, setSourceCoin] = useState<Coin | null>(null);
 	const [targetCoin, setTargetCoin] = useState<Coin | null>(null);
+	const [inputValue, setInputValue] = useState<string>('1');
 
 	const {
 		data: currencies,
@@ -28,47 +34,47 @@ function Exchange() {
 
 	const {
 		data: minAmount,
-		loading: loadMinAmount,
-		error: errorMinAmount
-	} = useApiHook<MinAmount>(`${PREFIX_V1}/min-amount/etc_btc`, {
-		params: {
-			api_key: `${API_KEY}`
-		}
-	});
+		loading: minAmountLoading,
+		error: minAmountError
+	} = useMinAmount(sourceCoin?.ticker, targetCoin?.ticker);
 
 	const {
 		data: estimatedAmount,
-		loading: loadEstimatedAmount,
-		error: errorEstimatedAmount
-	} = useApiHook<EstimatedAmount>(`${PREFIX_V2}/exchange/estimated-amount`, {
-		params: {
-			fromCurrency: `${sourceCoin?.ticker}`,
-			toCurrency: `${targetCoin?.ticker}`,
-			fromAmount: 1,
-			fromNetwork: `${sourceCoin?.ticker}`,
-			toNetwork: `${targetCoin?.ticker}`
-		},
-		headers: {
-			'x-changenow-api-key': `${API_KEY}`
+		loading: estimatedAmountLoading,
+		error: estimatedAmountError
+	} = useEstimatedAmount(
+		sourceCoin?.ticker,
+		targetCoin?.ticker,
+		Number(inputValue)
+	);
+
+	useEffect(() => {
+		if (minAmount === null || estimatedAmount === null) {
+			setError(true);
+		} else {
+			setError(false);
 		}
-	});
+	}, [setError, minAmount, estimatedAmount]);
 
-	const error = errorEstimatedAmount || errorMinAmount;
-
+	if (minAmountLoading || estimatedAmountLoading) return <Loader />;
 	return (
-		<div className={styles.container}>
-			<InputSelect
+		<>
+			<InputSource
 				currencies={currencies}
 				coin={sourceCoin}
 				setCoin={setSourceCoin}
+				minAmount={minAmount}
+				inputValue={inputValue}
+				setInputValue={setInputValue}
 			/>
 			<ButtonSVG />
-			<InputSelect
+			<InputTarget
 				currencies={currencies}
 				coin={targetCoin}
 				setCoin={setTargetCoin}
+				amount={estimatedAmount?.toAmount}
 			/>
-		</div>
+		</>
 	);
 }
 

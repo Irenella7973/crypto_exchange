@@ -3,7 +3,7 @@ import ButtonSVG from '../ButtonSVG/ButtonSVG';
 import InputSource from '../InputSource/InputSource';
 import { Coin } from '../../interfaces/api';
 import useApi from '../../hooks/useApi';
-import { PREFIX_V1 } from '../../constants';
+import { VITE_PREFIX_V1 } from '../../constants';
 import { ExchangeProps } from './Exchange.props';
 import InputTarget from '../InputTarget/InputTarget';
 import useMinAmount from '../../hooks/useMinAmount';
@@ -15,7 +15,7 @@ function Exchange({ setError }: ExchangeProps) {
 	const [targetCoin, setTargetCoin] = useState<Coin | null>(null);
 	const [inputValue, setInputValue] = useState<string>('1');
 
-	const { data: currencies } = useApi<Coin[]>(`${PREFIX_V1}/currencies`, {
+	const { data: currencies } = useApi<Coin[]>(`${VITE_PREFIX_V1}/currencies`, {
 		params: { active: true, fixedRate: true }
 	});
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { EstimatedAmount } from '../interfaces/api';
-import { API_KEY, PREFIX_V2 } from '../constants';
+import { VITE_API_KEY, VITE_PREFIX_V2 } from '../constants';
 
 const useEstimatedAmount = (
 	sourceCoinTicker: string | undefined,
@@ -18,7 +18,7 @@ const useEstimatedAmount = (
 				try {
 					setLoading(true);
 					const response: AxiosResponse<EstimatedAmount> = await axios.get(
-						`${PREFIX_V2}/exchange/estimated-amount`,
+						`${VITE_PREFIX_V2}/exchange/estimated-amount`,
 						{
 							params: {
 								fromCurrency: sourceCoinTicker,
@@ -28,7 +28,7 @@ const useEstimatedAmount = (
 								toNetwork: targetCoinTicker
 							},
 							headers: {
-								'x-changenow-api-key': API_KEY
+								'x-changenow-api-key': VITE_API_KEY
 							}
 						}
 					);

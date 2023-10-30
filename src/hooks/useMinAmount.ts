@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios, { AxiosResponse } from 'axios';
 import { MinAmount } from '../interfaces/api';
-import { API_KEY, PREFIX_V1 } from '../constants';
+import { VITE_PREFIX_V1, VITE_API_KEY } from '../constants';
 
 const useMinAmount = (
 	sourceCoinTicker: string | undefined,
@@ -17,10 +17,10 @@ const useMinAmount = (
 				try {
 					setLoading(true);
 					const response: AxiosResponse<MinAmount> = await axios.get(
-						`${PREFIX_V1}/min-amount/${sourceCoinTicker}_${targetCoinTicker}`,
+						`${VITE_PREFIX_V1}/min-amount/${sourceCoinTicker}_${targetCoinTicker}`,
 						{
 							params: {
-								api_key: API_KEY
+								api_key: VITE_API_KEY
 							}
 						}
 					);

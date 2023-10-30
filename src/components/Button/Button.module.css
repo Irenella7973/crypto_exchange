@@ -1,0 +1,38 @@
+.buttonContainer {
+	position: relative;
+}
+
+.button {
+	height: 50px;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 19px;
+	letter-spacing: 0.03em;
+	text-align: left;
+	padding: 15px 59px;
+	border-radius: 5px;
+	color: var(--white-color);
+	background-color: var(--button-bg-color);
+	border: none;
+	cursor: pointer;
+	&:hover {
+		background: var(--button-bg-color-hover);
+	}
+}
+
+.errorMessage {
+	position: absolute;
+	bottom: -25px;
+	left: 15px;
+	color: var(--red);
+}
+
+@media screen and (max-width: 360px) {
+	.buttonContainer {
+		width: 100%;
+	}
+	.button {
+		width: 100%;
+		text-align: center;
+	}
+}

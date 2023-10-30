@@ -1,0 +1,17 @@
+{
+   "singleQuote": true,
+   "parser": "typescript",
+   "endOfLine": "auto",
+   "printWidth": 80,
+   "trailingComma": "none",
+   "useTabs": true,
+   "tabWidth": 2,
+	 "overrides": [
+  {
+    "files": "*.css",
+    "options": {
+      "parser": "css"
+    }
+  }
+]
+}

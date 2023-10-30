@@ -1,8 +1,9 @@
 import styles from './ButtonSVG.module.css';
+import { ButtonPopsSVG } from './ButtonSVG.props';
 
-function ButtonSVG() {
+function ButtonSVG({ ...props }: ButtonPopsSVG) {
 	return (
-		<button type="button" className={styles.swap}>
+		<button {...props} type="button" className={styles.swap}>
 			<img src="./swap.svg" alt="swap" />
 		</button>
 	);

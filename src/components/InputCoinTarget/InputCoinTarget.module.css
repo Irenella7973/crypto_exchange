@@ -41,13 +41,6 @@
 	border-color: var(--red);
 }
 
-.errorMessage {
-	position: absolute;
-	bottom: -25px;
-	left: 0;
-	color: var(--red);
-}
-
 .delimiter {
 	position: absolute;
 	right: 150px;

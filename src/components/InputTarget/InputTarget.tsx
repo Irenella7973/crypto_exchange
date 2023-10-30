@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { InputTargetProps } from './InputTarget.props';
 import { Coin } from '../../interfaces/api';
-import InputCoin from '../InputCoin/InputCoin';
 import InputSearch from '../InputSearch/InputSearch';
+import InputCoinTarget from '../InputCoinTarget/InputCoinTarget';
 
 function InputTarget({ currencies, coin, setCoin, amount }: InputTargetProps) {
 	const [isSearchInput, setIsSearchInput] = useState<boolean>(false);
@@ -19,7 +19,7 @@ function InputTarget({ currencies, coin, setCoin, amount }: InputTargetProps) {
 	return (
 		<>
 			{!isSearchInput && (
-				<InputCoin coin={coin} getSearch={getSearch} amount={amount} />
+				<InputCoinTarget coin={coin} getSearch={getSearch} amount={amount} />
 			)}
 			{isSearchInput && (
 				<InputSearch

@@ -24,6 +24,7 @@ const useMinAmount = (
 							}
 						}
 					);
+					setError(null);
 					setData(response.data);
 					setLoading(false);
 				} catch (error) {

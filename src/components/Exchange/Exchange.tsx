@@ -1,15 +1,13 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from 'react';
 import ButtonSVG from '../ButtonSVG/ButtonSVG';
 import InputSource from '../InputSource/InputSource';
-import styles from './Exchange.module.css';
 import { Coin } from '../../interfaces/api';
-import useApiHook from '../../hooks/use-api.hook';
+import useApi from '../../hooks/useApi';
 import { PREFIX_V1 } from '../../constants';
 import { ExchangeProps } from './Exchange.props';
 import InputTarget from '../InputTarget/InputTarget';
-import useMinAmount from '../../hooks/use-minAmount.hook';
-import useEstimatedAmount from '../../hooks/use-estimatedAmount';
+import useMinAmount from '../../hooks/useMinAmount';
+import useEstimatedAmount from '../../hooks/useEstimatedAmount';
 import Loader from '../Loader/Loader';
 
 function Exchange({ setError }: ExchangeProps) {
@@ -17,11 +15,7 @@ function Exchange({ setError }: ExchangeProps) {
 	const [targetCoin, setTargetCoin] = useState<Coin | null>(null);
 	const [inputValue, setInputValue] = useState<string>('1');
 
-	const {
-		data: currencies,
-		loading: loadCurrencies,
-		error: loadError
-	} = useApiHook<Coin[]>(`${PREFIX_V1}/currencies`, {
+	const { data: currencies } = useApi<Coin[]>(`${PREFIX_V1}/currencies`, {
 		params: { active: true, fixedRate: true }
 	});
 
@@ -47,16 +41,27 @@ function Exchange({ setError }: ExchangeProps) {
 		targetCoin?.ticker,
 		Number(inputValue)
 	);
+	const load = minAmountLoading || estimatedAmountLoading;
 
 	useEffect(() => {
-		if (minAmount === null || estimatedAmount === null) {
+		if (!load && (minAmountError || estimatedAmountError)) {
 			setError(true);
 		} else {
 			setError(false);
 		}
-	}, [setError, minAmount, estimatedAmount]);
+	}, [setError, minAmountError, estimatedAmountError, load]);
 
-	if (minAmountLoading || estimatedAmountLoading) return <Loader />;
+	useEffect(() => {
+		if (minAmount) {
+			setInputValue(String(minAmount?.minAmount));
+		}
+	}, [minAmount]);
+
+	const swapCoins = () => {
+		setSourceCoin(targetCoin);
+		setTargetCoin(sourceCoin);
+	};
+
 	return (
 		<>
 			<InputSource
@@ -67,7 +72,7 @@ function Exchange({ setError }: ExchangeProps) {
 				inputValue={inputValue}
 				setInputValue={setInputValue}
 			/>
-			<ButtonSVG />
+			{load ? <Loader /> : <ButtonSVG onClick={swapCoins} />}
 			<InputTarget
 				currencies={currencies}
 				coin={targetCoin}

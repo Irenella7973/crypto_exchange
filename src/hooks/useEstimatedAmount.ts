@@ -32,8 +32,9 @@ const useEstimatedAmount = (
 							}
 						}
 					);
-					setData(response.data);
 					setLoading(false);
+					setError(null);
+					setData(response.data);
 				} catch (error) {
 					setError('This pair is disabled now');
 					setLoading(false);

@@ -6,5 +6,4 @@ export interface InputCoinProps {
 	minAmount?: MinAmount | null;
 	setInputValue?: (value: string) => void;
 	inputValue?: string;
-	amount?: number;
 }

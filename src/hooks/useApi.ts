@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios';
 
-const useApiHook = <T>(url: string, params?: AxiosRequestConfig) => {
+const useApi = <T>(url: string, params?: AxiosRequestConfig) => {
 	const [data, setData] = useState<T | null>(null);
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState<string | null>(null);
@@ -26,4 +26,4 @@ const useApiHook = <T>(url: string, params?: AxiosRequestConfig) => {
 	return { data, loading, error };
 };
 
-export default useApiHook;
+export default useApi;

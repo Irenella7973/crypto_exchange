@@ -1,18 +1,9 @@
 import cn from 'classnames';
-import styles from './InputCoin.module.css';
-import { InputCoinProps } from './InputCoin.props';
+import styles from './InputCoinTarget.module.css';
+import { InputCoinTargetProps } from './InputCoinTarget.props';
 
-function InputCoin({
-	coin,
-	getSearch,
-	minAmount,
-	setInputValue,
-	inputValue
-}: InputCoinProps) {
+function InputCoinTarget({ coin, getSearch, amount }: InputCoinTargetProps) {
 	let errorMinAmount;
-	if (minAmount) {
-		errorMinAmount = Number(inputValue) < minAmount?.minAmount;
-	}
 
 	return (
 		<div className={cn(styles.containerInputCoin)}>
@@ -21,8 +12,8 @@ function InputCoin({
 				className={cn(styles.input, {
 					[styles.error]: errorMinAmount
 				})}
-				value={inputValue}
-				onChange={(e) => setInputValue && setInputValue(e.target.value)}
+				value={amount}
+				readOnly
 			/>
 			<img src="./delimiter.svg" alt="delimiter" className={styles.delimiter} />
 			<div className={cn(styles.select, { [styles.error]: errorMinAmount })}>
@@ -36,13 +27,8 @@ function InputCoin({
 					className={styles.arrow}
 				/>
 			</div>
-			{errorMinAmount && (
-				<span
-					className={styles.errorMessage}
-				>{`min: ${minAmount?.minAmount}`}</span>
-			)}
 		</div>
 	);
 }
 
-export default InputCoin;
+export default InputCoinTarget;

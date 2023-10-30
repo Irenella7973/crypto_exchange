@@ -8,17 +8,19 @@
 }
 
 .exchangeContainer {
-	width: 100%;
+	width: 1070px;
 	display: flex;
 	align-items: start;
 	gap: 17px;
 	& button {
-		padding-top: 10px;
+		padding-top: 12px;
+		padding-left: 8px;
+		padding-right: 8px;
 	}
 }
 
 .translationContainer {
-	width: 100%;
+	width: 1070px;
 	display: flex;
 	gap: 32px;
 	align-items: end;

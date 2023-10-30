@@ -31,6 +31,7 @@ module.exports = {
 		indent: ['error', 'tab'],
 		'no-shadow': 0,
 		'@typescript-eslint/no-shadow': 0,
+		'no-param-reassign': 0,
 		'prettier/prettier': [
 			'error',
 			{

@@ -7,6 +7,7 @@ import InputAddress from '../../components/InputAddress/InputAddress';
 
 function Home() {
 	const [error, setError] = useState(false);
+
 	return (
 		<div className={styles.root}>
 			<Title />

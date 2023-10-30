@@ -21,3 +21,9 @@
 	border: 1px solid var(--input-bg-color);
 	background-color: var(--input-border-color);
 }
+
+@media screen and (max-width: 360px) {
+	.input {
+		width: 100%;
+	}
+}

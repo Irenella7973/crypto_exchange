@@ -1,4 +1,3 @@
-import cn from 'classnames';
 import { useState } from 'react';
 import styles from './InputSearch.module.css';
 import { InputSearchProps } from './InputSearch.props';
@@ -11,7 +10,7 @@ function InputSearch({
 	const [search, setSearch] = useState<string>('');
 	const [timer, setTimer] = useState<NodeJS.Timeout | null>(null);
 
-	const searchCurrencie = async (e: React.ChangeEvent<HTMLInputElement>) => {
+	const searchCurrencies = async (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { value } = e.target;
 
 		if (timer) {
@@ -38,7 +37,7 @@ function InputSearch({
 				type="text"
 				className={styles.inputSearch}
 				placeholder="Search"
-				onChange={searchCurrencie}
+				onChange={searchCurrencies}
 			/>
 			<img
 				onClick={getSearch}
@@ -51,7 +50,7 @@ function InputSearch({
 				{currencies &&
 					currencies.map((item) => (
 						<div
-							className={cn(styles.input, styles.option)}
+							className={styles.inputOption}
 							key={item.ticker}
 							onClick={() => handleSelectCoin(item)}
 							aria-hidden="true"

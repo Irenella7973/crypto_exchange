@@ -26,3 +26,13 @@
 	left: 15px;
 	color: var(--red);
 }
+
+@media screen and (max-width: 360px) {
+	.buttonContainer {
+		width: 100%;
+	}
+	.button {
+		width: 100%;
+		text-align: center;
+	}
+}
